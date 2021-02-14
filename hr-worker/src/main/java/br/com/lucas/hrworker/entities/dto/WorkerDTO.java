@@ -1,8 +1,11 @@
 package br.com.lucas.hrworker.entities.dto;
 
-public class WorkerDTO {
+import java.io.Serializable;
 
-    private String name;
+public class WorkerDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	private String name;
     private Double dailyIncome;
 
     public WorkerDTO(String name, Double dailyIncome) {

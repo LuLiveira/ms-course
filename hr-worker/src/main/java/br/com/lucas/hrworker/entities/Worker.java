@@ -2,8 +2,6 @@ package br.com.lucas.hrworker.entities;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +16,7 @@ import javax.validation.constraints.Positive;
 @Table(indexes = {
 		@Index(name = "name_x_dailyincome", columnList = "name, daily_income", unique = true)
 })
-public class Worker implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Worker {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
