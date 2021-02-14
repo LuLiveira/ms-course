@@ -14,8 +14,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import br.com.lucas.hrworker.entities.dto.WorkerDTO;
-
 @Entity
 @Table(indexes = {
 		@Index(name = "name_x_dailyincome", columnList = "name, daily_income", unique = true)

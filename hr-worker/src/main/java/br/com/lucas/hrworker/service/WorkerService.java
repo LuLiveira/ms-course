@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import br.com.lucas.hrworker.entities.Worker;
 import br.com.lucas.hrworker.entities.dto.WorkerDTO;
 import br.com.lucas.hrworker.repositories.WorkerRepository;
 import br.com.lucas.hrworker.service.exceptions.UserNotFoundException;
@@ -27,10 +26,9 @@ public class WorkerService {
         return workerDTOs;
     }
 
-    public WorkerDTO findById(Long id){
+    public WorkerDTO findById(final Long id){
         var workerById = workerRepository.findById(id);
-
-        Worker worker = workerById.orElseThrow(() -> new UserNotFoundException("User not found."));
+        var worker = workerById.orElseThrow(() -> new UserNotFoundException("User not found."));
 
         return new WorkerDTO(worker.getName(), worker.getDailyIncome());
     }
