@@ -1,15 +1,15 @@
-package br.com.lucas.hrpayroll.dto;
+package br.com.lucas.hrpayroll.vo;
 
 import java.io.Serializable;
 
-public class PaymentDTO implements Serializable{
+public class PaymentVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String name;
 	private Double dailyIncome;
 	private Integer days;
 
-	public PaymentDTO(String name, Double dailyIncome, Integer days) {
+	public PaymentVo(String name, Double dailyIncome, Integer days) {
 		this.name = name;
 		this.dailyIncome = dailyIncome;
 		this.days = days;

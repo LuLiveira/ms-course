@@ -3,8 +3,8 @@ package br.com.lucas.hrpayroll.services;
 import org.springframework.stereotype.Service;
 
 import br.com.lucas.hrpayroll.clients.WorkerClient;
-import br.com.lucas.hrpayroll.dto.PaymentDTO;
 import br.com.lucas.hrpayroll.dto.WorkerDTO;
+import br.com.lucas.hrpayroll.vo.PaymentVo;
 
 @Service
 public class PaymentService {
@@ -15,8 +15,8 @@ public class PaymentService {
 		this.client = client;
 	}
 	
-	public PaymentDTO getPayment(final long workerId, final int days) {
+	public PaymentVo getPayment(final long workerId, final int days) {
 		WorkerDTO workerDTO = client.findById(workerId);
-		return new PaymentDTO(workerDTO.getName(), workerDTO.getDailyIncome(), days);
+		return new PaymentVo(workerDTO.getName(), workerDTO.getDailyIncome(), days);
 	}
-}
+}	

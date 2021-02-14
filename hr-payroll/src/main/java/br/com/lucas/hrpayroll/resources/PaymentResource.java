@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.lucas.hrpayroll.dto.PaymentDTO;
 import br.com.lucas.hrpayroll.services.PaymentService;
+import br.com.lucas.hrpayroll.vo.PaymentVo;
 
 @RestController
 @RequestMapping("/payments")
@@ -21,7 +21,7 @@ public class PaymentResource {
 	}
 
 	@GetMapping("/workers/{id}")
-	public ResponseEntity<PaymentDTO> getPaymentByWorkerId(@PathVariable Long id, @RequestParam(defaultValue = "0", required = false, name = "days") Integer days){
+	public ResponseEntity<PaymentVo> getPaymentByWorkerId(@PathVariable Long id, @RequestParam(defaultValue = "0", required = false, name = "days") Integer days){
 		return ResponseEntity.ok(paymentService.getPayment(id, days));
 	}
 }
