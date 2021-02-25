@@ -16,7 +16,7 @@ public class PaymentService {
 	}
 	
 	public PaymentVo getPayment(final long workerId, final int days) {
-		WorkerDTO workerDTO = client.findById(workerId);
+		WorkerDTO workerDTO = client.findById(workerId).getBody();
 		return new PaymentVo(workerDTO.getName(), workerDTO.getDailyIncome(), days);
 	}
 }	
