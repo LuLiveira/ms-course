@@ -1,4 +1,4 @@
-package br.com.lucas.hrworker.repositories;
+package br.com.lucas.hrworker.adapters.saida;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -5,11 +5,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import br.com.lucas.hrworker.entities.dto.WorkerDTO;
-import br.com.lucas.hrworker.repositories.WorkerRepository;
+import br.com.lucas.hrworker.adapters.saida.WorkerRepository;
+import br.com.lucas.hrworker.dto.WorkerDTO;
 import br.com.lucas.hrworker.service.exceptions.UserNotFoundException;
 
 @Service
+@Deprecated
 public class WorkerService {
     
     private final WorkerRepository workerRepository;
