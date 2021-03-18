@@ -1,10 +1,13 @@
 package br.com.lucas.hrworker.ports.impl;
 
+import org.springframework.stereotype.Service;
+
 import br.com.lucas.hrworker.adapters.saida.WorkerRepository;
 import br.com.lucas.hrworker.dto.WorkerDTO;
 import br.com.lucas.hrworker.ports.WorkerDatabaseRecuperaPeloId;
 import br.com.lucas.hrworker.service.exceptions.UserNotFoundException;
 
+@Service
 public class WorkerDatabaseRecuperaPeloIdImpl implements WorkerDatabaseRecuperaPeloId {
 	
 	private final WorkerRepository workerRepository;
@@ -18,7 +21,7 @@ public class WorkerDatabaseRecuperaPeloIdImpl implements WorkerDatabaseRecuperaP
         var workerById = workerRepository.findById(id);
         var worker = workerById.orElseThrow(() -> new UserNotFoundException("User not found."));
 
-        return new WorkerDTO(worker.getName(), worker.getDailyIncome());
+        return new WorkerDTO(worker::getName, worker::getDailyIncome);
 	}
 
 }

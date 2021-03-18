@@ -11,6 +11,10 @@ public class RecuperaWorkerPeloIdUseCaseImpl implements RecuperaWorkerPeloIdUseC
 
 	private WorkerDatabaseRecuperaPeloId workerDatabaseRecuperaPeloId;
 	
+	public RecuperaWorkerPeloIdUseCaseImpl(WorkerDatabaseRecuperaPeloId workerDatabaseRecuperaPeloId) {
+		this.workerDatabaseRecuperaPeloId = workerDatabaseRecuperaPeloId;
+	}
+	
 	@Override
 	public WorkerDTO execute(final Long id) {
 		return workerDatabaseRecuperaPeloId.execute(id);
