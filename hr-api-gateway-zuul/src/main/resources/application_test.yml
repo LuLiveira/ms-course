@@ -1,0 +1,29 @@
+server:
+  port: 8089
+ 
+eureka:
+  instance:
+    prefer-ip-address: true # registers the service ip rather than the server name
+  client:
+    register-with-eureka: true # register him self at eureka
+    fetch-registry: true # pull down a local copy of the registries
+    service-url:
+      defaultZone: http://localhost:8761/eureka # discovery service location
+
+spring:
+  application:
+    name: gateway-service # gateway service name to be called by it clients
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # use netflix eureka discovery service
+      routes:
+        - id: client-service
+          uri: lb://HR-WORKER # netflix eureka correspondent service
+          predicates:
+          - Path=/client/** # how we will map the url to the target service
+        - id: address-service
+          uri: lb://address-service
+          predicates:
+          - Path=/address/** 
