@@ -1,11 +1,17 @@
 package br.com.lucas.hroauth.vos;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class UserVo implements Serializable {
+public class UserVo implements Serializable, UserDetails {
 
     private Long id;
 
@@ -53,10 +59,6 @@ public class UserVo implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -67,6 +69,40 @@ public class UserVo implements Serializable {
 
     public void setRoles(Set<RoleVo> roleVos) {
         this.roleVos = roleVos;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roleVos.stream().map(roleVo -> new SimpleGrantedAuthority(roleVo.getName())).collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
@@ -81,4 +117,6 @@ public class UserVo implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }

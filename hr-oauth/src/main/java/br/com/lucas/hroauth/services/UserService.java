@@ -1,14 +1,15 @@
 package br.com.lucas.hroauth.services;
 
 import br.com.lucas.hroauth.clients.UserClient;
-import br.com.lucas.hroauth.exceptions.UserNotFoundException;
-import br.com.lucas.hroauth.vos.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
@@ -18,19 +19,9 @@ public class UserService {
         this.userClient = userClient;
     }
 
-    public UserVo findByEmail(String email) {
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         var userVo = userClient.findByEmail(email).getBody();
-
-        verifyIfUserExists(userVo);
-        LOGGER.error("Usuário encontrado.");
-
         return userVo;
-    }
-
-    private void verifyIfUserExists(UserVo userVo) {
-        if(userVo == null) {
-            LOGGER.error("Usuário não encontrado.");
-            throw new UserNotFoundException("Usuário não encontrado.");
-        }
     }
 }
