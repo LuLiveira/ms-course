@@ -9,7 +9,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableZuulProxy
-@EnableDiscoveryClient
 public class HrApiGatewayZuulApplication {
 //    @Bean
 //    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
