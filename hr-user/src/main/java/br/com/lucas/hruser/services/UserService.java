@@ -2,7 +2,6 @@ package br.com.lucas.hruser.services;
 
 import br.com.lucas.hruser.entities.User;
 import br.com.lucas.hruser.repositories.UserRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
